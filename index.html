@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kaeden Wellman</title>
-<meta name="description" content="Kaeden Wellman — engineering student, UCCS track athlete, and founder of Teen Startup Kits.">
+<meta name="description" content="Kaeden Wellman: Electrical Engineering student at UCCS, Division II hurdler, and builder of software and embedded projects.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='black'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='%23CFB87C' font-family='Arial' font-weight='800'>KW</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +45,7 @@
     grid-template-columns: minmax(0, 1fr);
     max-width: 1400px;
     margin: 0 auto;
-    padding: 28px clamp(18px, 4vw, 48px) 24px;
+    padding: 28px clamp(16px, 4vw, 48px) 24px;
   }
 
   /* ---------- Header ---------- */
@@ -70,6 +70,7 @@
     font-weight: 400;
     font-stretch: 100%;
     letter-spacing: 0;
+    line-height: 1.4;
     color: var(--muted);
   }
   .contact {
@@ -82,9 +83,29 @@
   }
   .contact a { text-decoration: none; color: var(--ink); }
   .contact a:hover { color: var(--gold); }
+  .contact .short { display: none; }
+
+  /* ---------- Section tabs ---------- */
+  main { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 30px 0 12px; }
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 6px 22px;
+    flex-wrap: wrap;
+    margin: 0 0 22px;
+    padding: 0;
+    list-style: none;
+  }
+  .tabs button {
+    background: none; border: 0; padding: 6px 0;
+    font: inherit; font-size: 15px; color: var(--muted);
+    border-bottom: 2px solid transparent;
+    cursor: pointer; white-space: nowrap;
+  }
+  .tabs button:hover { color: var(--ink); }
+  .tabs button[aria-current="true"] { color: var(--ink); border-bottom-color: var(--gold); }
 
   /* ---------- Carousel ---------- */
-  main { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 36px 0 12px; }
   .stage {
     position: relative;
     width: 100vw;
@@ -119,6 +140,7 @@
       repeating-linear-gradient(90deg, transparent 0 calc(12.5% - 1px), rgba(255,255,255,.05) calc(12.5% - 1px) 12.5%),
       radial-gradient(120% 90% at 85% 10%, var(--tint) 0%, #0d0d0d 70%);
   }
+  .ph i { font-style: normal; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 8px; }
   .ph b {
     font-size: clamp(34px, 7vw, 96px);
     font-weight: 900;
@@ -127,7 +149,6 @@
     text-transform: uppercase;
     color: rgba(255,255,255,.9);
   }
-  .ph span { margin-top: 10px; font-size: 13px; color: rgba(255,255,255,.55); }
 
   .arrow {
     position: absolute;
@@ -165,8 +186,11 @@
   }
   .count { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .role { margin: 6px 0 10px; color: var(--gold); font-size: 15px; }
-  .desc p.body { margin: 0; max-width: 64ch; color: #CFCCC6; }
-  .desc .more { display: inline-block; margin-top: 10px; font-size: 15px; color: var(--gold); text-underline-offset: 4px; }
+  .desc p.body { margin: 0 0 8px; max-width: 64ch; color: #CFCCC6; }
+  .desc ul { margin: 0; padding-left: 1.1em; max-width: 64ch; color: #CFCCC6; }
+  .desc li { margin: 0 0 6px; }
+  .desc li::marker { color: var(--gold); }
+  .desc .more { display: inline-block; margin-top: 6px; font-size: 15px; color: var(--gold); text-underline-offset: 4px; overflow-wrap: anywhere; }
   .desc.swap > * { animation: fade .35s ease both; }
   @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
@@ -174,8 +198,9 @@
   footer {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    align-items: end;
+    align-items: center;
     gap: 16px;
+    margin-top: 12px;
     padding-top: 22px;
     border-top: 1px solid var(--line);
   }
@@ -185,8 +210,7 @@
     cursor: pointer; text-decoration: none; justify-self: start;
   }
   .link-btn:hover { color: var(--gold); }
-  footer .github { justify-self: end; display: inline-flex; align-items: center; gap: 8px; }
-  footer .github svg { width: 18px; height: 18px; }
+  .resume-box { display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .resume {
     display: inline-block;
     padding: 14px 34px;
@@ -199,6 +223,11 @@
     text-align: center;
   }
   .resume:hover { background: var(--ink); }
+  .download { font-size: 14px; color: var(--muted); text-underline-offset: 3px; }
+  .download:hover { color: var(--gold); }
+  .social { justify-self: end; display: flex; gap: 20px; }
+  .social a { display: inline-flex; align-items: center; gap: 8px; }
+  .social svg { width: 18px; height: 18px; }
 
   /* ---------- Future projects sheet ---------- */
   dialog {
@@ -227,16 +256,25 @@
     .contact { flex-direction: row; align-items: stretch; gap: 8px; width: 100%; padding: 0; }
     .contact a {
       flex: 1; text-align: center;
-      padding: 10px 8px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
+      padding: 12px 8px; border: 1px solid var(--line); border-radius: 6px; font-size: 15px;
     }
-    main { padding-top: 22px; }
+    .contact .full { display: none; }
+    .contact .short { display: inline; }
+    main { padding-top: 20px; }
+    .tabs {
+      flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+      margin: 0 calc(-1 * clamp(16px, 4vw, 48px)) 16px; padding: 0 clamp(16px, 4vw, 48px);
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
     .stage { height: calc(var(--slide-w) * 0.8); }
     .arrow { width: 36px; height: 52px; }
     .arrow.prev { left: 6px; }
     .arrow.next { right: 6px; }
     .desc { width: 100%; }
-    footer { grid-template-columns: 1fr 1fr; }
-    footer .resume { grid-column: 1 / -1; grid-row: 1; }
+    footer { grid-template-columns: 1fr auto; row-gap: 20px; }
+    .resume-box { grid-column: 1 / -1; grid-row: 1; }
+    .resume { display: block; width: 100%; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -249,16 +287,18 @@
 
   <header>
     <h1 class="name">Kaeden Wellman
-      <small>Engineering @ UCCS · D2 sprints &amp; hurdles · Founder</small>
+      <small>Electrical Engineering @ UCCS · D2 Track &amp; Field · Builder</small>
     </h1>
     <nav class="contact" aria-label="Contact">
-      <a id="phone" href="#">Call</a>
-      <a id="email" href="#">Email</a>
+      <a id="phone" href="#"><span class="full"></span><span class="short">Call</span></a>
+      <a id="email" href="#"><span class="full"></span><span class="short">Email</span></a>
     </nav>
   </header>
 
   <main>
-    <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Projects and experience">
+    <nav class="tabs" id="tabs" aria-label="Resume sections"></nav>
+
+    <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Resume highlights">
       <button class="arrow prev" id="prev" aria-label="Previous">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 4 7 12l8 8"/></svg>
       </button>
@@ -272,11 +312,20 @@
 
   <footer>
     <button class="link-btn" id="futureBtn">Future projects</button>
-    <a class="resume" id="resume" target="_blank" rel="noopener">View my full resume</a>
-    <a class="link-btn github" id="github" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
-      GitHub
-    </a>
+    <div class="resume-box">
+      <a class="resume" id="resume" target="_blank" rel="noopener">View my full resume</a>
+      <a class="download" id="download" download="Kaeden_Wellman_Resume.pdf">Download PDF</a>
+    </div>
+    <div class="social">
+      <a class="link-btn" id="linkedin" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+        LinkedIn
+      </a>
+      <a class="link-btn" id="github" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
+      </a>
+    </div>
   </footer>
 </div>
 
@@ -289,83 +338,238 @@
 
 <script>
 /* =========================================================
-   EDIT EVERYTHING HERE — this is the only part you need to touch.
+   EDIT EVERYTHING HERE. This is the only part you need to touch.
+   Slides follow resume.pdf, section by section, in order.
    media: leave null for placeholder art, or use
      { type: "image", src: "/media/tsk.jpg" }
      { type: "video", src: "/media/lightsaber.mp4" }
-   (put the files in a /media folder next to index.html)
+   link: null, or { label: "Visit gyftloop.com", href: "https://gyftloop.com" }
    ========================================================= */
 const PROFILE = {
-  phone: "480-696-9274",                 // double-check this
+  phone: "480-696-9274",
   email: "kaeden.wellman@gmail.com",
-  github: "https://github.com/YOUR-USERNAME",
-  resume: "/resume.pdf"                  // drop resume.pdf next to index.html
+  github: "https://github.com/kaedenwellman",
+  linkedin: "https://www.linkedin.com/in/kaeden-wellman-a45237377",
+  resume: "/resume.pdf"
 };
 
 const SLIDES = [
+  // ---- About ----
   {
-    title: "Teen Startup Kits",
-    role: "Founder & operator · Arizona LLC",
-    body: "A Shopify store selling business-in-a-box starter kits for teen entrepreneurs. I formed the LLC, wrote the business plan, and designed a creator royalty model that pays the people whose ideas become kits.",
-    tint: "#6b5a2a", media: null
+    section: "About",
+    title: "Hi, I'm Kaeden",
+    role: "College freshman · Chandler, AZ → Colorado Springs",
+    body: "I'm a college freshman. I build software and embedded projects with Claude, teach what I build, and have been elected to leadership in every volunteer organization I've stayed with for over a year.",
+    link: null, tint: "#6b5a2a", media: null
+  },
+
+  // ---- Education ----
+  {
+    section: "Education",
+    title: "University of Colorado Colorado Springs",
+    role: "B.S. Electrical Engineering · Fall 2026 – Present",
+    body: "Division II Track & Field (400m / 300m hurdles).",
+    link: null, tint: "#2a2f45", media: null
   },
   {
+    section: "Education",
+    title: "Arizona College Prep High School",
+    role: "Chandler, AZ · Graduated May 2026, Magna Cum Laude",
+    points: [
+      "4.0 UW / 4.36 W",
+      "College-level Physics and Calculus"
+    ],
+    link: null, tint: "#3a3a3a", media: null
+  },
+
+  // ---- Projects ----
+  {
+    section: "Projects",
+    title: "Halle Reviews",
+    role: "Solo full-stack build · Diane & Bruce Halle Foundation, 2026",
+    points: [
+      "AI-assisted grant review application that replaces the foundation reviewers' improvised Zoom + NotebookLM + ChatGPT workflow; each grant moves through an LOI → Application → Funded → Completed lifecycle with LLM summarization at every stage, driven by editable Markdown rubrics.",
+      "Sole developer, ~6,200 lines of TypeScript/JavaScript in three weeks: Vite + React 18 + TypeScript + Tailwind on Vercel, Node + Express on Railway, push-to-main continuous deployment.",
+      "Multi-provider LLM layer (Anthropic, OpenAI, Google) behind a single streaming SSE interface with a server-side persisted key store; real Microsoft Entra ID sign-in (MSAL + jose JWT validation) and per-user workspace persistence."
+    ],
+    link: null, tint: "#2d4a3a", media: null
+  },
+  {
+    section: "Projects",
     title: "Lightsaber Duel Game",
-    role: "Hardware + web · CircuitPython, Web Serial API",
-    body: "A two-player dueling game where a Microchip Curiosity board acts as the controller and streams motion into a browser game over Web Serial — no app install, just plug in and play.",
+    role: "Microchip DevDay Hackathon winner · Best Project Award, 2026",
+    points: [
+      "Built a physical lightsaber dueling game linking a Microchip Curiosity board (CircuitPython, IMU, NeoPixels, LCD, audio) to a browser game via the Web Serial API.",
+      "Streamed motion data as JSON over USB serial at 10 Hz; shipped three deployable modes (classic side-by-side, first-person, combined).",
+      "Only non-intern in a field of college interns; debugged the full stack solo using Claude to understand root causes, not just fixes."
+    ],
+    link: { label: "github.com/kaedenwellman/lightsaber", href: "https://github.com/kaedenwellman/lightsaber" },
     tint: "#1f3d5c", media: null
   },
   {
-    title: "Microchip DevDay Workshop",
-    role: "Instructor · PyKit Explorer board",
-    body: "Prepared and taught a hands-on CircuitPython workshop introducing embedded systems on Microchip's PyKit Explorer board.",
-    tint: "#2d4a3a", media: null
-  },
-  {
-    title: "Realtor Hub",
-    role: "In progress · AI agents for real estate",
-    body: "A single dashboard for a real estate agent: listings, a client tracker, and AI agents that draft emails and social posts. Built on my own experience as a licensed agent with MLS access.",
-    tint: "#4a2d4a", media: null
-  },
-  {
-    title: "Gridiron Dreams",
-    role: "Game design · Roblox",
-    body: "A narrative sim on Roblox that follows an athlete from high school football all the way to the NFL Draft.",
+    section: "Projects",
+    title: "Gyftloop",
+    role: "Co-founder · with wellmanaz",
+    points: [
+      "Live product: track birthdays and anniversaries, then receive three tailored gift ideas one week before each occasion via automated email.",
+      "Vanilla JS SPA on Vercel Edge Functions with Neon Postgres and Auth0 (PKCE, no SDK); integrated a product marketplace API for live catalog data, OpenAI embeddings for candidate reranking, and Resend for scheduled reminder emails.",
+      "Composite ranking model blends semantic similarity, price fit, and top-rated flags, with a heuristic fallback when the LLM key isn't configured."
+    ],
+    link: { label: "gyftloop.com", href: "https://gyftloop.com" },
     tint: "#5c2a1f", media: null
   },
   {
-    title: "UCCS Track & Field",
-    role: "Division II · Sprints & hurdles",
-    body: "Ran the 110m hurdles, 300m hurdles, and 400m through high school; now competing for the University of Colorado Colorado Springs while studying engineering.",
-    tint: "#3a3a3a", media: null
+    section: "Projects",
+    title: "Teen Startup Kits",
+    role: "Founder · Arizona LLC, 2026",
+    points: [
+      "Direct-to-consumer Shopify business selling service-business starter kits for teens ages 13–18.",
+      "Filed the LLC through the Arizona Corporation Commission; designed a three-tier product structure (Basic/Pro/Premium), pricing, margins, and a creator affiliate model.",
+      "First product live: Window Cleaning Starter Kit."
+    ],
+    link: null, tint: "#6b5a2a", media: null
   },
   {
-    title: "Education",
-    role: "Engineering · University of Colorado Colorado Springs",
-    body: "Graduated high school summa cum laude. Self-taught in web development, app development, and 3D rendering, and I've kept an invention notebook since I was a kid.",
-    tint: "#2a2f45", media: null
+    section: "Projects",
+    title: "Link Crew Website",
+    role: "Arizona College Prep",
+    points: [
+      "Interactive site replacing a static PowerPoint for the Link Crew program; dual-audience with a gated section for selected leaders.",
+      "Built and deployed on GitHub Pages; branded to school colors and logo."
+    ],
+    link: null, tint: "#4a2d4a", media: null
+  },
+  {
+    section: "Projects",
+    title: "HOA Website",
+    role: "Web build",
+    body: "Web build for a local Homeowners Association.",
+    link: null, tint: "#2d3f4a", media: null
+  },
+
+  // ---- Teaching & leadership ----
+  {
+    section: "Teaching & leadership",
+    title: "CircuitPython Instructor",
+    role: "Microchip DevDay, Pima Community College · July 2026",
+    points: [
+      "Invited by the DevDay program's creator to co-lead the class after winning the hackathon; first student-to-instructor transition in the program's history.",
+      "Taught embedded CircuitPython to a class of about 25 college students, most with no prior coding experience.",
+      "Guided students through progressive hands-on projects on the Microchip PyKit Explorer board; ran one-on-one debugging sessions with students who got stuck."
+    ],
+    link: null, tint: "#2d4a3a", media: null
+  },
+  {
+    section: "Teaching & leadership",
+    title: "Event Coordinator",
+    role: "Arizona Best Buddies Friendship Walk · 2025–2026",
+    points: [
+      "Coordinated logistics for the statewide Friendship Walk; drove a measurable increase in underclassman participation from my school.",
+      "Chapter officer supporting Friendship Ball, Hot Cocoa Run, Trunk-or-Treat, and fundraising."
+    ],
+    link: null, tint: "#5c4a1f", media: null
+  },
+  {
+    section: "Teaching & leadership",
+    title: "Commissioner, Link Crew",
+    role: "Arizona College Prep · 2025–2026",
+    body: "Senior leadership role: event planning, supply coordination, donor outreach, multi-school coordination.",
+    link: null, tint: "#4a2d4a", media: null
+  },
+  {
+    section: "Teaching & leadership",
+    title: "Volunteer Hurdle Coach",
+    role: "2+ years",
+    body: "Coach youth and middle school hurdlers; extend the mentorship model of the coach who worked with me.",
+    link: null, tint: "#3a3a3a", media: null
+  },
+  {
+    section: "Teaching & leadership",
+    title: "Athletic Leadership Council Officer",
+    role: "Arizona College Prep",
+    body: "",
+    link: null, tint: "#2a2f45", media: null
+  },
+
+  // ---- Work ----
+  {
+    section: "Work",
+    title: "Assistant Chef & Staff Trainer",
+    role: "Gosan Poke and Roll (family-owned restaurant) · March 2024 – Present",
+    points: [
+      "Multi-role at a family-owned small business: kitchen operations, staff training, and social media content.",
+      "Trained new employees on prep, POS, and service standards; ran a high-volume kitchen through peak service.",
+      "Hands-on exposure to the operational realities of running a small business: inventory, labor, and customer experience."
+    ],
+    link: null, tint: "#5c2a1f", media: null
+  },
+
+  // ---- Skills ----
+  {
+    section: "Skills",
+    title: "Technical Skills",
+    role: "What I build with",
+    points: [
+      "Languages: Python, JavaScript, HTML/CSS",
+      "AI & APIs: Claude API, OpenAI API, prompt engineering, streaming SSE, Web Serial API",
+      "Web: React, Vite, Tailwind, Node, Express, Vercel, Railway",
+      "Auth & Data: Microsoft Entra ID (MSAL, JWT), Auth0 (PKCE), Neon Postgres",
+      "Embedded: CircuitPython, Microchip PyKit Explorer, Microchip Curiosity board, IMU/NeoPixel/LCD peripherals",
+      "Tools: GitHub, VS Code, Shopify, Google Apps Script"
+    ],
+    link: null, tint: "#1f3d5c", media: null
+  },
+
+  // ---- Awards ----
+  {
+    section: "Awards",
+    title: "Certifications & Awards",
+    role: "Recognition",
+    points: [
+      "Anthropic AI Fluency · Anthropic Claude 101 (Claude Corps prerequisites, completed)",
+      "2026 Superintendent's Outstanding Citizenship Award",
+      "Best Project Award, Microchip DevDay Hackathon (2026)",
+      "2025 Track & Field MVP · 2024 AZ Track & Field All-Academic Team · 2023 Freshman MVP",
+      "CTE Software and Design Knight Award",
+      "Food Managers Certification · Food Handlers Permit"
+    ],
+    link: null, tint: "#6b5a2a", media: null
   }
 ];
 
 const FUTURE = [
-  { title: "KW Digital Office", body: "A multi-agent AI layer that runs across school, training, and business." },
-  { title: "Neighborhood issue reporting", body: "QR-code reporting for HOAs so residents can flag problems in seconds." }
+  { title: "Realtor Hub", body: "A single dashboard for a real estate agent: listings, a client tracker, and AI agents that draft emails and social posts." },
+  { title: "KW Digital Office", body: "A multi-agent AI layer that runs across school, training, and business." }
 ];
 /* ========================================================= */
 
 const $ = id => document.getElementById(id);
-const stage = $("stage"), desc = $("desc");
+const stage = $("stage"), desc = $("desc"), tabs = $("tabs");
 let current = 0;
 
 // contact + links
 $("phone").href = "tel:" + PROFILE.phone.replace(/\D/g, "");
-$("phone").textContent = PROFILE.phone;
+$("phone").querySelector(".full").textContent = PROFILE.phone;
 $("email").href = "mailto:" + PROFILE.email;
-$("email").textContent = PROFILE.email;
+$("email").querySelector(".full").textContent = PROFILE.email;
 $("github").href = PROFILE.github;
+$("linkedin").href = PROFILE.linkedin;
 $("resume").href = PROFILE.resume;
+$("download").href = PROFILE.resume;
+
+// section tabs, in order of first appearance
+const sections = [...new Set(SLIDES.map(s => s.section))];
+const tabEls = sections.map(name => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = name;
+  b.onclick = () => go(SLIDES.findIndex(s => s.section === name));
+  tabs.appendChild(b);
+  return b;
+});
 
 // build slides
+let swiped = false;
 const els = SLIDES.map((s, i) => {
   const el = document.createElement("div");
   el.className = "slide";
@@ -376,9 +580,9 @@ const els = SLIDES.map((s, i) => {
   } else if (s.media && s.media.type === "image") {
     el.innerHTML = `<img src="${s.media.src}" alt="${s.title}" loading="lazy">`;
   } else {
-    el.innerHTML = `<div class="ph" style="--tint:${s.tint}"><b>${s.title}</b><span>Photo or video coming soon</span></div>`;
+    el.innerHTML = `<div class="ph" style="--tint:${s.tint}"><i>${s.section}</i><b>${s.title}</b></div>`;
   }
-  el.addEventListener("click", () => { if (i !== current) go(i); });
+  el.addEventListener("click", () => { if (!swiped && i !== current) go(i); });
   stage.appendChild(el);
   return el;
 });
@@ -409,19 +613,31 @@ function layout() {
   });
 }
 
+function renderTabs() {
+  const active = SLIDES[current].section;
+  tabEls.forEach((b, i) => {
+    const on = sections[i] === active;
+    b.setAttribute("aria-current", on);
+    if (on && tabs.scrollWidth > tabs.clientWidth) {
+      tabs.scrollTo({ left: b.offsetLeft - tabs.clientWidth / 2 + b.offsetWidth / 2, behavior: "smooth" });
+    }
+  });
+}
+
 function renderDesc() {
   const s = SLIDES[current];
   desc.classList.remove("swap"); void desc.offsetWidth; desc.classList.add("swap");
   desc.innerHTML = `
     <div class="desc-top"><h2>${s.title}</h2><span class="count">${current + 1} / ${SLIDES.length}</span></div>
     <div class="role">${s.role}</div>
-    <p class="body">${s.body}</p>
-    ${s.link ? `<a class="more" href="${s.link}" target="_blank" rel="noopener">See the project</a>` : ""}`;
+    ${s.body ? `<p class="body">${s.body}</p>` : ""}
+    ${s.points && s.points.length ? `<ul>${s.points.map(p => `<li>${p}</li>`).join("")}</ul>` : ""}
+    ${s.link ? `<a class="more" href="${s.link.href}" target="_blank" rel="noopener">${s.link.label} ↗</a>` : ""}`;
 }
 
 function go(i) {
   current = (i + SLIDES.length) % SLIDES.length;
-  layout(); renderDesc();
+  layout(); renderTabs(); renderDesc();
 }
 
 $("prev").onclick = () => go(current - 1);
@@ -434,12 +650,13 @@ document.addEventListener("keydown", e => {
 
 // swipe
 let startX = null;
-stage.addEventListener("pointerdown", e => { startX = e.clientX; });
+stage.addEventListener("pointerdown", e => { startX = e.clientX; swiped = false; });
 stage.addEventListener("pointerup", e => {
   if (startX === null) return;
   const dx = e.clientX - startX; startX = null;
-  if (Math.abs(dx) > 45) go(current + (dx < 0 ? 1 : -1));
+  if (Math.abs(dx) > 45) { swiped = true; go(current + (dx < 0 ? 1 : -1)); }
 });
+stage.addEventListener("pointercancel", () => { startX = null; });
 
 // future projects sheet
 $("futureList").innerHTML = FUTURE.map(f => `<li><b>${f.title}</b><span>${f.body}</span></li>`).join("");
