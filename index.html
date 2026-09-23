@@ -405,7 +405,7 @@ const SLIDES = [
       "Only non-intern in a field of college interns; debugged the full stack solo using Claude to understand root causes, not just fixes."
     ],
     link: { label: "github.com/kaedenwellman/lightsaber", href: "https://github.com/kaedenwellman/lightsaber" },
-    tint: "#1f3d5c", media: null
+    tint: "#1f3d5c", media: { type: "video", src: "/media/lightsaber.mp4", position: "center 30%" }
   },
   {
     section: "Projects",
@@ -577,7 +577,7 @@ const els = SLIDES.map((s, i) => {
   el.setAttribute("role", "group");
   el.setAttribute("aria-label", `${i + 1} of ${SLIDES.length}: ${s.title}`);
   if (s.media && s.media.type === "video") {
-    el.innerHTML = `<video src="${s.media.src}" muted loop playsinline preload="metadata"></video>`;
+    el.innerHTML = `<video src="${s.media.src}" muted loop playsinline preload="metadata" style="object-position:${s.media.position || "center"}"></video>`;
   } else if (s.media && s.media.type === "image") {
     el.innerHTML = `<img src="${s.media.src}" alt="${s.title}" loading="lazy" style="object-position:${s.media.position || "center"}">`;
   } else {
