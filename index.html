@@ -130,6 +130,9 @@
   }
   .slide.is-current { cursor: default; box-shadow: 0 0 0 1px var(--line); }
   .slide img, .slide video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+  /* fit: "contain" shows the whole photo over a dimmed, blurred copy of itself */
+  .slide .fill { position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px); filter: blur(18px) brightness(.45); }
+  .slide .whole { position: relative; object-fit: contain; }
 
   /* placeholder art when no photo/video yet */
   .ph {
@@ -345,6 +348,7 @@
      { type: "image", src: "/media/tsk.jpg" }
      { type: "video", src: "/media/lightsaber.mp4" }
    add position: "center 15%" to choose which part stays in frame when cropped
+   or fit: "contain" to show the whole photo (no crop) over a blurred fill
    link: null, or { label: "Visit gyftloop.com", href: "https://gyftloop.com" }
    ========================================================= */
 const PROFILE = {
@@ -362,7 +366,7 @@ const SLIDES = [
     title: "Hi, I'm Kaeden",
     role: "College freshman · Chandler, AZ → Colorado Springs",
     body: "I'm a college freshman. I build software and embedded projects with Claude, teach what I build, and have been elected to leadership in every volunteer organization I've stayed with for over a year.",
-    link: null, tint: "#6b5a2a", media: { type: "image", src: "/media/about.jpg", position: "center 20%" }
+    link: null, tint: "#6b5a2a", media: { type: "image", src: "/media/about.jpg", fit: "contain" }
   },
 
   // ---- Education ----
@@ -529,7 +533,9 @@ const els = SLIDES.map((s, i) => {
   if (s.media && s.media.type === "video") {
     el.innerHTML = `<video src="${s.media.src}" muted loop playsinline preload="metadata" style="object-position:${s.media.position || "center"}"></video>`;
   } else if (s.media && s.media.type === "image") {
-    el.innerHTML = `<img src="${s.media.src}" alt="${s.title}" loading="lazy" style="object-position:${s.media.position || "center"}">`;
+    el.innerHTML = s.media.fit === "contain"
+      ? `<img class="fill" src="${s.media.src}" alt="" aria-hidden="true"><img class="whole" src="${s.media.src}" alt="${s.title}" loading="lazy">`
+      : `<img src="${s.media.src}" alt="${s.title}" loading="lazy" style="object-position:${s.media.position || "center"}">`;
   } else {
     el.innerHTML = `<div class="ph" style="--tint:${s.tint}"><i>${s.section}</i><b>${s.title}</b></div>`;
   }
