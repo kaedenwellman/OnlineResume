@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaeden Wellman</title>
+<meta name="description" content="Kaeden Wellman — engineering student, UCCS track athlete, and founder of Teen Startup Kits.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='black'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='%23CFB87C' font-family='Arial' font-weight='800'>KW</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --ink: #EDEBE6;
+    --muted: #8C8A85;
+    --line: #262626;
+    --gold: #CFB87C;      /* UCCS gold */
+    --slide-w: min(62vw, 760px);
+    --gap: 28px;
+    --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+  .page {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px clamp(18px, 4vw, 48px) 24px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .name {
+    margin: 0;
+    font-size: clamp(28px, 4.2vw, 52px);
+    font-weight: 850;
+    font-stretch: 125%;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+  }
+  .name small {
+    display: block;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    font-stretch: 100%;
+    letter-spacing: 0;
+    color: var(--muted);
+  }
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: 15px;
+    padding-top: 6px;
+  }
+  .contact a { text-decoration: none; color: var(--ink); }
+  .contact a:hover { color: var(--gold); }
+
+  /* ---------- Carousel ---------- */
+  main { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 36px 0 12px; }
+  .stage {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: calc(var(--slide-w) * 0.625);
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+  }
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: var(--slide-w);
+    height: 100%;
+    margin-left: calc(var(--slide-w) / -2);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #151515;
+    transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .55s ease, filter .55s ease;
+    cursor: pointer;
+  }
+  .slide.is-current { cursor: default; box-shadow: 0 0 0 1px var(--line); }
+  .slide img, .slide video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+
+  /* placeholder art when no photo/video yet */
+  .ph {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: clamp(16px, 3vw, 36px);
+    background:
+      repeating-linear-gradient(90deg, transparent 0 calc(12.5% - 1px), rgba(255,255,255,.05) calc(12.5% - 1px) 12.5%),
+      radial-gradient(120% 90% at 85% 10%, var(--tint) 0%, #0d0d0d 70%);
+  }
+  .ph b {
+    font-size: clamp(34px, 7vw, 96px);
+    font-weight: 900;
+    font-stretch: 62%;
+    line-height: .85;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+  }
+  .ph span { margin-top: 10px; font-size: 13px; color: rgba(255,255,255,.55); }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 48px; height: 72px;
+    transform: translateY(-50%);
+    display: grid; place-items: center;
+    background: rgba(0,0,0,.72);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+  }
+  .arrow:hover { border-color: var(--gold); color: var(--gold); }
+  .arrow svg { width: 22px; height: 22px; }
+  .arrow.prev { left: calc(50% - var(--slide-w) / 2 - 24px); }
+  .arrow.next { right: calc(50% - var(--slide-w) / 2 - 24px); }
+
+  /* ---------- Description ---------- */
+  .desc {
+    width: var(--slide-w);
+    max-width: 100%;
+    margin: 26px auto 0;
+    min-height: 170px;
+  }
+  .desc-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .desc h2 {
+    margin: 0;
+    font-size: clamp(22px, 2.6vw, 32px);
+    font-weight: 800;
+    font-stretch: 112%;
+    line-height: 1.1;
+  }
+  .count { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .role { margin: 6px 0 10px; color: var(--gold); font-size: 15px; }
+  .desc p.body { margin: 0; max-width: 64ch; color: #CFCCC6; }
+  .desc .more { display: inline-block; margin-top: 10px; font-size: 15px; color: var(--gold); text-underline-offset: 4px; }
+  .desc.swap > * { animation: fade .35s ease both; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- Footer ---------- */
+  footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    gap: 16px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .link-btn {
+    background: none; border: 0; padding: 0;
+    font: inherit; font-size: 16px; color: var(--ink);
+    cursor: pointer; text-decoration: none; justify-self: start;
+  }
+  .link-btn:hover { color: var(--gold); }
+  footer .github { justify-self: end; display: inline-flex; align-items: center; gap: 8px; }
+  footer .github svg { width: 18px; height: 18px; }
+  .resume {
+    display: inline-block;
+    padding: 14px 34px;
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    font-stretch: 110%;
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .resume:hover { background: var(--ink); }
+
+  /* ---------- Future projects sheet ---------- */
+  dialog {
+    width: min(560px, calc(100vw - 32px));
+    max-height: 80vh;
+    padding: 28px;
+    background: #0e0e0e;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  dialog::backdrop { background: rgba(0,0,0,.75); }
+  dialog h3 { margin: 0 0 4px; font-size: 24px; font-weight: 800; font-stretch: 112%; }
+  dialog .sub { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+  dialog ul { list-style: none; margin: 0; padding: 0; }
+  dialog li { padding: 14px 0; border-top: 1px solid var(--line); }
+  dialog li b { display: block; font-weight: 700; }
+  dialog li span { color: #BDBAB4; font-size: 15px; }
+  dialog .close { margin-top: 18px; }
+
+  /* ---------- Phone (the QR code case) ---------- */
+  @media (max-width: 720px) {
+    :root { --slide-w: 84vw; --gap: 12px; }
+    .page { padding-top: 22px; }
+    header { flex-direction: column; gap: 14px; }
+    .contact { flex-direction: row; align-items: stretch; gap: 8px; width: 100%; padding: 0; }
+    .contact a {
+      flex: 1; text-align: center;
+      padding: 10px 8px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
+    }
+    main { padding-top: 22px; }
+    .stage { height: calc(var(--slide-w) * 0.8); }
+    .arrow { width: 36px; height: 52px; }
+    .arrow.prev { left: 6px; }
+    .arrow.next { right: 6px; }
+    .desc { width: 100%; }
+    footer { grid-template-columns: 1fr 1fr; }
+    footer .resume { grid-column: 1 / -1; grid-row: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide, .desc.swap > * { transition: none; animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1 class="name">Kaeden Wellman
+      <small>Engineering @ UCCS · D2 sprints &amp; hurdles · Founder</small>
+    </h1>
+    <nav class="contact" aria-label="Contact">
+      <a id="phone" href="#">Call</a>
+      <a id="email" href="#">Email</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Projects and experience">
+      <button class="arrow prev" id="prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 4 7 12l8 8"/></svg>
+      </button>
+      <button class="arrow next" id="next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 4 8 8-8 8"/></svg>
+      </button>
+    </div>
+
+    <section class="desc" id="desc" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <button class="link-btn" id="futureBtn">Future projects</button>
+    <a class="resume" id="resume" target="_blank" rel="noopener">View my full resume</a>
+    <a class="link-btn github" id="github" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      GitHub
+    </a>
+  </footer>
+</div>
+
+<dialog id="future">
+  <h3>Future projects</h3>
+  <p class="sub">What I'm building next.</p>
+  <ul id="futureList"></ul>
+  <button class="link-btn close" id="closeFuture">Close</button>
+</dialog>
+
+<script>
+/* =========================================================
+   EDIT EVERYTHING HERE — this is the only part you need to touch.
+   media: leave null for placeholder art, or use
+     { type: "image", src: "/media/tsk.jpg" }
+     { type: "video", src: "/media/lightsaber.mp4" }
+   (put the files in a /media folder next to index.html)
+   ========================================================= */
+const PROFILE = {
+  phone: "480-696-9274",                 // double-check this
+  email: "kaeden.wellman@gmail.com",
+  github: "https://github.com/YOUR-USERNAME",
+  resume: "/resume.pdf"                  // drop resume.pdf next to index.html
+};
+
+const SLIDES = [
+  {
+    title: "Teen Startup Kits",
+    role: "Founder & operator · Arizona LLC",
+    body: "A Shopify store selling business-in-a-box starter kits for teen entrepreneurs. I formed the LLC, wrote the business plan, and designed a creator royalty model that pays the people whose ideas become kits.",
+    tint: "#6b5a2a", media: null
+  },
+  {
+    title: "Lightsaber Duel Game",
+    role: "Hardware + web · CircuitPython, Web Serial API",
+    body: "A two-player dueling game where a Microchip Curiosity board acts as the controller and streams motion into a browser game over Web Serial — no app install, just plug in and play.",
+    tint: "#1f3d5c", media: null
+  },
+  {
+    title: "Microchip DevDay Workshop",
+    role: "Instructor · PyKit Explorer board",
+    body: "Prepared and taught a hands-on CircuitPython workshop introducing embedded systems on Microchip's PyKit Explorer board.",
+    tint: "#2d4a3a", media: null
+  },
+  {
+    title: "Realtor Hub",
+    role: "In progress · AI agents for real estate",
+    body: "A single dashboard for a real estate agent: listings, a client tracker, and AI agents that draft emails and social posts. Built on my own experience as a licensed agent with MLS access.",
+    tint: "#4a2d4a", media: null
+  },
+  {
+    title: "Gridiron Dreams",
+    role: "Game design · Roblox",
+    body: "A narrative sim on Roblox that follows an athlete from high school football all the way to the NFL Draft.",
+    tint: "#5c2a1f", media: null
+  },
+  {
+    title: "UCCS Track & Field",
+    role: "Division II · Sprints & hurdles",
+    body: "Ran the 110m hurdles, 300m hurdles, and 400m through high school; now competing for the University of Colorado Colorado Springs while studying engineering.",
+    tint: "#3a3a3a", media: null
+  },
+  {
+    title: "Education",
+    role: "Engineering · University of Colorado Colorado Springs",
+    body: "Graduated high school summa cum laude. Self-taught in web development, app development, and 3D rendering, and I've kept an invention notebook since I was a kid.",
+    tint: "#2a2f45", media: null
+  }
+];
+
+const FUTURE = [
+  { title: "KW Digital Office", body: "A multi-agent AI layer that runs across school, training, and business." },
+  { title: "Neighborhood issue reporting", body: "QR-code reporting for HOAs so residents can flag problems in seconds." }
+];
+/* ========================================================= */
+
+const $ = id => document.getElementById(id);
+const stage = $("stage"), desc = $("desc");
+let current = 0;
+
+// contact + links
+$("phone").href = "tel:" + PROFILE.phone.replace(/\D/g, "");
+$("phone").textContent = PROFILE.phone;
+$("email").href = "mailto:" + PROFILE.email;
+$("email").textContent = PROFILE.email;
+$("github").href = PROFILE.github;
+$("resume").href = PROFILE.resume;
+
+// build slides
+const els = SLIDES.map((s, i) => {
+  const el = document.createElement("div");
+  el.className = "slide";
+  el.setAttribute("role", "group");
+  el.setAttribute("aria-label", `${i + 1} of ${SLIDES.length}: ${s.title}`);
+  if (s.media && s.media.type === "video") {
+    el.innerHTML = `<video src="${s.media.src}" muted loop playsinline preload="metadata"></video>`;
+  } else if (s.media && s.media.type === "image") {
+    el.innerHTML = `<img src="${s.media.src}" alt="${s.title}" loading="lazy">`;
+  } else {
+    el.innerHTML = `<div class="ph" style="--tint:${s.tint}"><b>${s.title}</b><span>Photo or video coming soon</span></div>`;
+  }
+  el.addEventListener("click", () => { if (i !== current) go(i); });
+  stage.appendChild(el);
+  return el;
+});
+
+function offsetOf(i) {
+  const n = SLIDES.length;
+  let d = (i - current) % n;
+  if (d > n / 2) d -= n;
+  if (d < -n / 2) d += n;
+  return d;
+}
+
+function layout() {
+  const w = els[0].offsetWidth;
+  const gap = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gap"));
+  els.forEach((el, i) => {
+    const d = offsetOf(i);
+    const far = Math.abs(d) > 1;
+    el.style.transform = `translateX(${d * (w * 0.86 + gap)}px) scale(${d === 0 ? 1 : 0.82})`;
+    el.style.opacity = d === 0 ? 1 : far ? 0 : 0.38;
+    el.style.filter = d === 0 ? "none" : "grayscale(.6)";
+    el.style.zIndex = 3 - Math.abs(d);
+    el.style.pointerEvents = far ? "none" : "auto";
+    el.classList.toggle("is-current", d === 0);
+    el.setAttribute("aria-hidden", d !== 0);
+    const v = el.querySelector("video");
+    if (v) d === 0 ? v.play().catch(() => {}) : v.pause();
+  });
+}
+
+function renderDesc() {
+  const s = SLIDES[current];
+  desc.classList.remove("swap"); void desc.offsetWidth; desc.classList.add("swap");
+  desc.innerHTML = `
+    <div class="desc-top"><h2>${s.title}</h2><span class="count">${current + 1} / ${SLIDES.length}</span></div>
+    <div class="role">${s.role}</div>
+    <p class="body">${s.body}</p>
+    ${s.link ? `<a class="more" href="${s.link}" target="_blank" rel="noopener">See the project</a>` : ""}`;
+}
+
+function go(i) {
+  current = (i + SLIDES.length) % SLIDES.length;
+  layout(); renderDesc();
+}
+
+$("prev").onclick = () => go(current - 1);
+$("next").onclick = () => go(current + 1);
+document.addEventListener("keydown", e => {
+  if ($("future").open) return;
+  if (e.key === "ArrowLeft") go(current - 1);
+  if (e.key === "ArrowRight") go(current + 1);
+});
+
+// swipe
+let startX = null;
+stage.addEventListener("pointerdown", e => { startX = e.clientX; });
+stage.addEventListener("pointerup", e => {
+  if (startX === null) return;
+  const dx = e.clientX - startX; startX = null;
+  if (Math.abs(dx) > 45) go(current + (dx < 0 ? 1 : -1));
+});
+
+// future projects sheet
+$("futureList").innerHTML = FUTURE.map(f => `<li><b>${f.title}</b><span>${f.body}</span></li>`).join("");
+$("futureBtn").onclick = () => $("future").showModal();
+$("closeFuture").onclick = () => $("future").close();
+$("future").addEventListener("click", e => { if (e.target === $("future")) $("future").close(); });
+
+window.addEventListener("resize", layout);
+go(0);
+</script>
+</body>
+</html>
