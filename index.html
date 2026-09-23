@@ -190,6 +190,7 @@
   .desc ul { margin: 0; padding-left: 1.1em; max-width: 64ch; color: #CFCCC6; }
   .desc li { margin: 0 0 6px; }
   .desc li::marker { color: var(--gold); }
+  .desc li b { color: var(--ink); font-weight: 700; }
   .desc .more { display: inline-block; margin-top: 6px; font-size: 15px; color: var(--gold); text-underline-offset: 4px; overflow-wrap: anywhere; }
   .desc.swap > * { animation: fade .35s ease both; }
   @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
@@ -403,18 +404,6 @@ const SLIDES = [
   },
   {
     section: "Projects",
-    title: "Gyftloop",
-    role: "Co-founder · with wellmanaz",
-    points: [
-      "Live product: track birthdays and anniversaries, then receive three tailored gift ideas one week before each occasion via automated email.",
-      "Vanilla JS SPA on Vercel Edge Functions with Neon Postgres and Auth0 (PKCE, no SDK); integrated a product marketplace API for live catalog data, OpenAI embeddings for candidate reranking, and Resend for scheduled reminder emails.",
-      "Composite ranking model blends semantic similarity, price fit, and top-rated flags, with a heuristic fallback when the LLM key isn't configured."
-    ],
-    link: { label: "gyftloop.com", href: "https://gyftloop.com" },
-    tint: "#5c2a1f", media: null
-  },
-  {
-    section: "Projects",
     title: "Teen Startup Kits",
     role: "Founder · Arizona LLC, 2026",
     points: [
@@ -426,20 +415,15 @@ const SLIDES = [
   },
   {
     section: "Projects",
-    title: "Link Crew Website",
-    role: "Arizona College Prep",
+    title: "Other Projects",
+    role: "Gyftloop · Link Crew Website · HOA Website",
     points: [
-      "Interactive site replacing a static PowerPoint for the Link Crew program; dual-audience with a gated section for selected leaders.",
-      "Built and deployed on GitHub Pages; branded to school colors and logo."
+      "<b>Gyftloop</b> (co-founder, with wellmanaz): live product that tracks birthdays and anniversaries, then emails three tailored gift ideas one week before each occasion. Vanilla JS on Vercel Edge Functions, Neon Postgres, Auth0, and OpenAI embeddings for reranking.",
+      "<b>Link Crew Website</b> (Arizona College Prep): interactive site replacing a static PowerPoint for the Link Crew program, with a gated section for selected leaders. Built and deployed on GitHub Pages.",
+      "<b>HOA Website</b>: web build for a local Homeowners Association."
     ],
-    link: null, tint: "#4a2d4a", media: null
-  },
-  {
-    section: "Projects",
-    title: "HOA Website",
-    role: "Web build",
-    body: "Web build for a local Homeowners Association.",
-    link: null, tint: "#2d3f4a", media: null
+    link: { label: "gyftloop.com", href: "https://gyftloop.com" },
+    tint: "#5c2a1f", media: { type: "image", src: "/media/gyftloop.webp", position: "center 30%" }
   },
 
   // ---- Teaching & leadership ----
