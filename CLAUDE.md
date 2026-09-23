@@ -48,14 +48,14 @@ The Future projects popup is the one place for things not on the resume (current
 - Name top left, phone and email top right. On phones these become two tap-to-call / tap-to-email buttons.
 - Center: carousel with the current slide large and the previous/next slides dimmed and peeking in from the sides, with ‹ › arrows between them. Supports swipe, arrow keys, clicking a side slide, and the section tabs.
 - Under the slide: title, role, body/bullets, link, and an "n / total" counter.
-- Bottom bar: "Future projects" (left), "View my full resume" button with a "Download PDF" link under it (center), LinkedIn and GitHub (right). On phones the resume button spans the full width on top.
+- Bottom bar: "Future projects" (left), "View my full resume" button with a "Download PDF" link under it (center), LinkedIn and GitHub (right). On phones the resume button spans the full width on top. On desktop the footer is tucked below the screen edge so only the top of the resume button peeks in (`TIP` in the script), and it bounces up into full view once on page load; scrolling to the end shows it fully.
 
 ## Design tokens
 
 - `--bg #000000`, `--ink #EDEBE6`, `--muted #8C8A85`, `--line #262626`
 - `--gold #CFB87C` (UCCS gold), the only accent color
 - Font: Archivo. The name uses a wide stretch (125%) at weight 850. Placeholder art uses a condensed stretch (62%).
-- Keep it restrained: one accent color, no gradients on UI, no extra animations. Respect `prefers-reduced-motion`.
+- Keep it restrained: one accent color, no gradients on UI, no extra animations (the one-time footer bounce on desktop is intentional). Respect `prefers-reduced-motion`.
 
 ## Open to-dos
 

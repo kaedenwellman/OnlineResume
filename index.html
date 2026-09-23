@@ -252,18 +252,22 @@
   dialog li span { color: #BDBAB4; font-size: 15px; }
   dialog .close { margin-top: 18px; }
 
-  /* ---------- Desktop: keep the footer (and resume button) in view ---------- */
+  /* ---------- Desktop: only the tip of the footer peeks in at the bottom ----------
+     JS sets --peek-hide to how much of the footer sits below the screen edge. */
   @media (min-width: 721px) {
     footer {
       position: sticky;
-      bottom: 0;
+      bottom: calc(-1 * var(--peek-hide, 0px));
       z-index: 10;
       background: var(--bg);
-      padding: 12px 0 12px;
-      box-shadow: 0 24px 0 var(--bg);   /* covers the gap under the pinned bar */
     }
-    footer .resume { padding: 11px 30px; }
-    footer .resume-box { gap: 4px; }
+    footer.bounce { animation: peek 1.9s cubic-bezier(.3,.7,.4,1) .7s both; }
+  }
+  @keyframes peek {
+    0%, 100% { transform: none; }
+    18%, 48% { transform: translateY(calc(-1 * var(--peek-hide, 0px))); }
+    72%      { transform: none; }
+    84%      { transform: translateY(-10px); }
   }
 
   /* ---------- Phone (the QR code case) ---------- */
@@ -296,7 +300,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .slide, .desc.swap > * { transition: none; animation: none; }
+    .slide, .desc.swap > *, footer.bounce { transition: none; animation: none; }
   }
 </style>
 </head>
@@ -636,7 +640,20 @@ $("futureBtn").onclick = () => $("future").showModal();
 $("closeFuture").onclick = () => $("future").close();
 $("future").addEventListener("click", e => { if (e.target === $("future")) $("future").close(); });
 
-window.addEventListener("resize", layout);
+// desktop: tuck the footer below the screen edge so just the top of the resume button shows
+const footer = document.querySelector("footer");
+const TIP = 44; // px of the footer left visible
+function peek() {
+  const desktop = matchMedia("(min-width: 721px)").matches;
+  footer.style.setProperty("--peek-hide", desktop ? Math.max(0, footer.offsetHeight - TIP) + "px" : "0px");
+}
+peek();
+if (footer.getBoundingClientRect().bottom > innerHeight + 1 && matchMedia("(min-width: 721px)").matches) {
+  footer.classList.add("bounce");
+  footer.addEventListener("animationend", () => footer.classList.remove("bounce"), { once: true });
+}
+
+window.addEventListener("resize", () => { layout(); peek(); });
 go(0);
 </script>
 </body>
