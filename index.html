@@ -252,6 +252,20 @@
   dialog li span { color: #BDBAB4; font-size: 15px; }
   dialog .close { margin-top: 18px; }
 
+  /* ---------- Desktop: keep the footer (and resume button) in view ---------- */
+  @media (min-width: 721px) {
+    footer {
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      background: var(--bg);
+      padding: 12px 0 12px;
+      box-shadow: 0 24px 0 var(--bg);   /* covers the gap under the pinned bar */
+    }
+    footer .resume { padding: 11px 30px; }
+    footer .resume-box { gap: 4px; }
+  }
+
   /* ---------- Phone (the QR code case) ---------- */
   @media (max-width: 720px) {
     :root { --slide-w: 84vw; --gap: 12px; }
