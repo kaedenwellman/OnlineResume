@@ -343,6 +343,7 @@
    media: leave null for placeholder art, or use
      { type: "image", src: "/media/tsk.jpg" }
      { type: "video", src: "/media/lightsaber.mp4" }
+   add position: "center 15%" to choose which part stays in frame when cropped
    link: null, or { label: "Visit gyftloop.com", href: "https://gyftloop.com" }
    ========================================================= */
 const PROFILE = {
@@ -578,7 +579,7 @@ const els = SLIDES.map((s, i) => {
   if (s.media && s.media.type === "video") {
     el.innerHTML = `<video src="${s.media.src}" muted loop playsinline preload="metadata"></video>`;
   } else if (s.media && s.media.type === "image") {
-    el.innerHTML = `<img src="${s.media.src}" alt="${s.title}" loading="lazy">`;
+    el.innerHTML = `<img src="${s.media.src}" alt="${s.title}" loading="lazy" style="object-position:${s.media.position || "center"}">`;
   } else {
     el.innerHTML = `<div class="ph" style="--tint:${s.tint}"><i>${s.section}</i><b>${s.title}</b></div>`;
   }

@@ -31,7 +31,7 @@ All content lives in one editable block at the top of the `<script>` in `index.h
   - `body` (paragraph) and/or `points` (array of bullet strings)
   - `link`: `{ label, href }` or `null`. Shows as a gold link under the text.
   - `tint`: hex color for the placeholder art shown when there's no media.
-  - `media`: `null`, or `{ type: "image", src: "/media/x.jpg" }`, or `{ type: "video", src: "/media/x.mp4" }`. Videos autoplay muted and looped, only on the current slide.
+  - `media`: `null`, or `{ type: "image", src: "/media/x.jpg" }`, or `{ type: "video", src: "/media/x.mp4" }`. Videos autoplay muted and looped, only on the current slide. Optional `position` (CSS `object-position`, e.g. `"center 15%"`) picks which part of the image stays in frame when it's cropped.
 - `FUTURE`: items in the "Future projects" popup (`title`, `body`).
 
 To change content, edit these data structures. Don't hand-edit rendered HTML.
