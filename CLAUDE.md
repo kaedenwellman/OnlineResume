@@ -8,6 +8,7 @@ Personal resume/portfolio site. People reach it by scanning a QR code on Kaeden'
 - Hosted on **Vercel**, connected to this GitHub repo. Every push to `main` deploys automatically.
 - Vercel settings: Framework Preset "Other", build and output settings blank.
 - Only external dependency: the Google Fonts stylesheet for **Archivo** (variable, `wdth` 62–125). Fallback: Helvetica Neue / Arial.
+- Vercel Web Analytics is loaded with the plain-HTML snippet in `<head>` (`/_vercel/insights/script.js`), not the npm package, since there is no build step. It only works on the deployed site; locally that script 404s, which is expected.
 
 ## Files
 
