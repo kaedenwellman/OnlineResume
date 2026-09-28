@@ -40,7 +40,7 @@ To change content, edit these data structures. Don't hand-edit rendered HTML.
 
 **`resume.pdf` is the main source of info.** Slides mirror the resume section by section, in the resume's order and closely following its wording: About (summary), Education, Projects, Teaching & leadership, Work, Skills, Awards. When the resume changes, update the slides to match and replace `resume.pdf`.
 
-The Future projects popup is the one place for things not on the resume (currently Realtor Hub and KW Digital Office).
+The Future projects popup is the one place for things not on the resume (currently Realtor Hub, KW Digital Office, and Project Jarvis).
 
 ## Layout (from Kaeden's original sketch — keep it)
 
@@ -63,9 +63,9 @@ The Future projects popup is the one place for things not on the resume (current
 - [ ] Add the Link Crew Website URL (GitHub Pages) as that slide's `link`.
 - [ ] Add the HOA Website URL, if public, as that slide's `link`.
 - [ ] Confirm the Lightsaber Duel repo URL (`https://github.com/kaedenwellman/lightsaber`).
-- [ ] Resume PDF fixes: the lightsaber repo line runs into the "Gyftloop" heading; "Graduating May 2026" should be "Graduated"; UCCS "Incoming Fall 2026" should be "Fall 2026 – Present". Then replace `resume.pdf`.
-- [ ] Optional: custom domain (for example kaedenwellman.com) via Vercel → Settings → Domains.
-- [ ] **Last step:** generate the QR code for the final URL (the custom domain if there is one). The printed code can't change, so the URL it points to must never change either. Never rename or delete the Vercel project after cards are printed.
+- [x] One-page, ATS-friendly `resume.pdf` with the QR code in the top-right corner (source: `/resume-src/resume.html`, printed to PDF with headless Chromium on US Letter; check it stays one page). The site holds more detail than the resume; keep facts consistent between them.
+- [x] Custom domain: https://www.meetkaeden.site/
+- [x] **Last step:** generate the QR code for the final URL (the custom domain if there is one). The printed code can't change, so the URL it points to must never change either. Never rename or delete the Vercel project after cards are printed. QR files are in `/qr/` (they point to https://www.meetkaeden.site/); keep the domain renewed.
 
 ## Before pushing, check
 
