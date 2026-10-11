@@ -1,0 +1,539 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Theme tokens (HANDOFF §4). Flip themes with <html data-theme="…">.
+   ------------------------------------------------------------------ */
+:root,
+[data-theme="cream"] {
+  --bg: #ece9e2;
+  --bg-elevated: #f4f2ec;
+  --ink: #141414;
+  --ink-muted: #4a4a47;
+  --rule: #141414;
+  --accent-mint: #bfe6d3;
+  --accent-lav: #d8c9f0;
+  --accent-peach: #f2cdb5;
+  --accent-butter: #f3e9a0;
+  /* Darkened from #1C8CFF so it passes 4.5:1 on paper (see README). */
+  --accent-blue: #0a66c2;
+  --shadow-color: var(--ink);
+  --glow: none;
+  --band: #141414;
+  --band-ink: #ece9e2;
+  --band-muted: #b9b6ae;
+  --wordmark-hl: var(--accent-mint);
+  --wordmark-hl-ink: #141414;
+  --scanline-opacity: 0.035;
+  --noise-opacity: 0.05;
+  color-scheme: light;
+}
+
+[data-theme="black"] {
+  --bg: #07090d;
+  --bg-elevated: #0e1218;
+  --ink: #e6eef7;
+  --ink-muted: #9aa7b6;
+  --rule: #e6eef7;
+  --accent-mint: #0f3b33;
+  --accent-lav: #2a2248;
+  --accent-peach: #3e2519;
+  --accent-butter: #3a3410;
+  --accent-blue: #2ea8ff;
+  --shadow-color: var(--accent-blue);
+  --glow: 0 0 12px rgba(46, 168, 255, 0.55);
+  --band: #0e1218;
+  --band-ink: #e6eef7;
+  --band-muted: #9aa7b6;
+  --wordmark-hl: #2ea8ff;
+  --wordmark-hl-ink: #07090d;
+  --scanline-opacity: 0.06;
+  --noise-opacity: 0.06;
+  color-scheme: dark;
+}
+
+:root {
+  --shadow: 4px 4px 0 var(--shadow-color);
+  --shadow-lg: 6px 6px 0 var(--shadow-color);
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-elevated: var(--bg-elevated);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-muted);
+  --color-mint: var(--accent-mint);
+  --color-lav: var(--accent-lav);
+  --color-peach: var(--accent-peach);
+  --color-butter: var(--accent-butter);
+  --color-blue: var(--accent-blue);
+  --color-band: var(--band);
+  --color-band-ink: var(--band-ink);
+  --color-band-muted: var(--band-muted);
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+/* ------------------------------------------------------------------ Base */
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+/* Scanlines + grain over everything (pointer-events: none). */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+}
+body::before {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(0 0 0 / var(--scanline-opacity)) 0 1px,
+    transparent 1px 3px
+  );
+}
+[data-theme="black"] body::before {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(255 255 255 / calc(var(--scanline-opacity) * 0.5)) 0 1px,
+    transparent 1px 3px
+  );
+}
+body::after {
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+[data-theme="black"] body::after {
+  mix-blend-mode: screen;
+}
+
+/* Desktop bezel (≥1280px only): a dark frame with rounded inner corners. */
+.bezel {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .bezel {
+    display: block;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 61;
+    overflow: hidden;
+  }
+  .bezel::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 18px;
+    box-shadow: 0 0 0 40px #141414;
+  }
+  [data-theme="black"] .bezel::after {
+    box-shadow:
+      0 0 0 40px #000,
+      inset 0 0 0 1px rgb(46 168 255 / 0.35);
+  }
+  body {
+    padding: 12px;
+  }
+}
+
+/* ------------------------------------------------------------ Type scale */
+.h-giant {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  font-size: clamp(2.6rem, 9vw + 0.5rem, 7.5rem);
+  overflow-wrap: anywhere;
+}
+.h-section {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  font-size: clamp(2.1rem, 6vw + 0.4rem, 4.75rem);
+}
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.body-copy {
+  font-size: clamp(0.95rem, 0.3vw + 0.9rem, 1.0625rem);
+  line-height: 1.7;
+  color: var(--ink-muted);
+}
+
+/* ------------------------------------------------------------ Wordmark */
+.wordmark-hl {
+  background: var(--wordmark-hl);
+  color: var(--wordmark-hl-ink);
+  padding: 0 0.15em;
+}
+
+/* -------------------------------------------------------- Brutal boxes */
+.brutal {
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow);
+}
+.brutal-border {
+  border: 2px solid var(--ink);
+}
+
+/* Buttons + chips + cards share the hover / press feel. */
+.press {
+  transition:
+    transform 120ms ease-out,
+    box-shadow 120ms ease-out,
+    background-color 120ms ease-out;
+  box-shadow: var(--shadow);
+}
+@media (hover: hover) {
+  .press:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+.press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--shadow-color);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--ink);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+[data-theme="black"] .btn-primary {
+  box-shadow: var(--shadow), var(--glow);
+}
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--ink);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--ink);
+  background: var(--bg-elevated);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.chip[aria-pressed="true"],
+.chip[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+[data-theme="black"] .chip[aria-pressed="true"],
+[data-theme="black"] .chip[aria-selected="true"] {
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--ink);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--ink);
+  background: var(--bg-elevated);
+  color: var(--ink);
+}
+.card-media {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid var(--ink);
+}
+.card-media img {
+  transition: transform 300ms var(--ease);
+}
+@media (hover: hover) {
+  .card:hover .card-media img {
+    transform: scale(1.03);
+  }
+}
+
+.link-arrow {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.link-arrow:hover {
+  color: var(--accent-blue);
+}
+
+.prose-link {
+  color: var(--accent-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Full-width rule under filter rows. */
+.rule {
+  border: 0;
+  border-top: 2px solid var(--rule);
+}
+
+/* ---------------------------------------------------------- Starburst */
+.sticker {
+  animation: sticker-wobble 6s ease-in-out infinite;
+  transform: rotate(-12deg);
+}
+@keyframes sticker-wobble {
+  0%,
+  100% {
+    transform: rotate(-16deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+/* ------------------------------------------------------------ Marquee */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ------------------------------------------------- Coming-soon artwork */
+.tron-grid {
+  background-color: #07090d;
+  background-image:
+    linear-gradient(rgb(46 168 255 / 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(46 168 255 / 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.led-blink {
+  animation: led-blink 2.8s ease-in-out infinite;
+}
+@keyframes led-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.15;
+  }
+}
+
+/* -------------------------------------------------------------- Join wire */
+.join-wire {
+  stroke: var(--ink);
+}
+[data-theme="black"] .join-wire {
+  stroke: var(--accent-blue);
+  filter: drop-shadow(0 0 4px rgb(46 168 255 / 0.7));
+}
+
+/* -------------------------------------------------------------- Details */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* ------------------------------------------------------------ Boot intro */
+#boot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  color: #cff0ff;
+}
+#boot .boot-bg {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+html.no-intro #boot {
+  display: none;
+}
+/* Lock scroll on <html> only: hiding overflow on <body> would make it a
+   scroll container and shift the sticky header the logo flies to. */
+html.intro-on {
+  overflow: hidden;
+}
+/* The header mark stays hidden until the flying logo lands on it. */
+html.intro-on [data-lion-mark] {
+  opacity: 0;
+}
+.boot-grid {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 35%;
+  background-image:
+    linear-gradient(rgb(46 168 255 / 0.9) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(46 168 255 / 0.9) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(300px) rotateX(60deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(to top, #000, transparent);
+  opacity: 0;
+}
+.boot-cursor {
+  animation: boot-blink 0.18s steps(1) infinite;
+}
+@keyframes boot-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.boot-skip {
+  border-radius: 999px;
+}
+.boot-skip-in {
+  animation: boot-fade-in 200ms ease-out 300ms both;
+}
+@keyframes boot-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Hero lines stagger in after the intro. */
+html.intro-reveal [data-stagger] > * {
+  animation: stagger-in 420ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 30ms);
+}
+/* Transform only: animating opacity here would re-trigger LCP on the hero. */
+@keyframes stagger-in {
+  from {
+    transform: translateY(8px);
+  }
+}
+
+/* ------------------------------------------------------ Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .sticker {
+    transform: rotate(-12deg);
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .press:hover,
+  .press:active {
+    transform: none;
+  }
+  .card:hover .card-media img {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------ Layout */
+.wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1400px;
+  padding-inline: 1rem;
+}
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .wrap {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Inverted scope for ink bands (footer, join band): tokens flip locally. */
+.on-band {
+  --ink: var(--band-ink);
+  --ink-muted: var(--band-muted);
+  --bg: var(--band);
+  --bg-elevated: var(--band);
+  --shadow-color: var(--accent-mint);
+  background: var(--band);
+  color: var(--band-ink);
+}
+[data-theme="black"] .on-band {
+  --shadow-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}

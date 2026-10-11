@@ -1,0 +1,15 @@
+{
+  "_note": "Photos: put square images in /public/team/<slug>.webp and set `photo`. Empty photo = render a letter avatar. Lerry Lara is listed twice on Mountain Lion Connect (Secretary + Club Officer); show once, as Secretary.",
+  "officers": [
+    { "slug": "daniel-bustos", "name": "Daniel Bustos", "role": "President", "badge": "PRIMARY CONTACT", "photo": "" },
+    { "slug": "michael-smith", "name": "Michael Smith", "role": "Vice President", "photo": "" },
+    { "slug": "lerry-lara", "name": "Lerry Lara", "role": "Secretary", "photo": "" },
+    { "slug": "kaeden-wellman", "name": "Kaeden Wellman", "role": "Director of Marketing & Communications", "photo": "" },
+    { "slug": "william-mcginley", "name": "William McGinley", "role": "Club Officer", "photo": "" },
+    { "slug": "jake-marlett", "name": "Jake Marlett", "role": "Club Officer", "photo": "" },
+    { "slug": "ben-foronda", "name": "Ben Foronda", "role": "Club Officer", "photo": "" }
+  ],
+  "advisors": [
+    { "slug": "leslie-tekamp", "name": "Leslie Tekamp", "role": "Staff / Faculty Advisor", "photo": "" }
+  ]
+}

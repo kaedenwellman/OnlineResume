@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" stroke="#CFF0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path id="head-l" d="M132 122L132 84L140 62L156 52L204 88L212 78L232 64L248 64L256 76"/>
+  <path id="head-r" d="M380 122L380 84L372 62L356 52L308 88L300 78L280 64L264 64L256 76"/>
+  <path id="ear-l" d="M152 74L194 106L150 144"/>
+  <path id="ear-r" d="M360 74L318 106L362 144"/>
+  <path id="cheek-l" d="M145 142L145 189L176 214L182 232L214 262"/>
+  <path id="cheek-r" d="M367 142L367 189L336 214L330 232L298 262"/>
+  <path id="eye-l" d="M162 159L182 160L199 165L222 182L235 200L222 199L195 195L179 179L162 159"/>
+  <path id="eye-r" d="M350 159L330 160L313 165L290 182L277 200L290 199L317 195L333 179L350 159"/>
+  <path id="brow-l" d="M232 80L222 88L222 117L199 140"/>
+  <path id="brow-r" d="M280 80L290 88L290 117L313 140"/>
+  <path id="nose-l" d="M229 205L229 239L256 249"/>
+  <path id="nose-r" d="M283 205L283 239L256 249"/>
+  <path id="mouth-l" d="M214 262L245 265L245 279L256 284"/>
+  <path id="mouth-r" d="M298 262L267 265L267 279L256 284"/>
+  <path id="whiskers-l" d="M200 267L222 267M200 279L222 279M200 290L222 290"/>
+  <path id="whiskers-r" d="M312 267L290 267M312 279L290 279M312 290L290 290"/>
+  <path id="jaw-l" d="M215 299L256 322"/>
+  <path id="jaw-r" d="M297 299L256 322"/>
+  <path id="chin-l" d="M200 304L222 320L256 342"/>
+  <path id="chin-r" d="M312 304L290 320L256 342"/>
+  <path id="traceA-l" d="M137 282L137 228L150 215"/>
+  <path id="traceA-r" d="M375 282L375 228L362 215"/>
+  <path id="traceB-l" d="M165 304L165 250"/>
+  <path id="traceB-r" d="M347 304L347 250"/>
+  <path id="centerL" d="M239 80L239 140L232 150L232 170"/>
+  <path id="centerM" d="M249 82L249 166"/>
+  <path id="centerR" d="M265 82L265 185"/>
+  <circle cx="199" cy="140" r="4"/>
+  <circle cx="313" cy="140" r="4"/>
+  <circle cx="137" cy="282" r="5"/>
+  <circle cx="375" cy="282" r="5"/>
+  <circle cx="165" cy="304" r="5"/>
+  <circle cx="347" cy="304" r="5"/>
+  <circle cx="249" cy="169" r="3.5"/>
+  <circle cx="265" cy="189" r="3.5"/>
+  <circle cx="232" cy="174" r="3.5"/>
+</svg>

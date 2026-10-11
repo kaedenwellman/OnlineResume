@@ -1,0 +1,63 @@
+{
+  "name": "Wire Lion Engineering Club",
+  "shortName": "Wire Lion",
+  "wordmark": { "plain": "WIRE", "highlighted": "LION" },
+  "school": "University of Colorado Colorado Springs (UCCS)",
+  "founded": 2025,
+  "memberCountLabel": "40+",
+  "tagline": "Hands-on electrical & computer engineering at UCCS.",
+  "heroHeadline": "WE BUILD THINGS THAT LIGHT UP.",
+  "heroSubhead": "Circuits, microcontrollers, code, and real builds for every skill level, from first solder joint to Verilog.",
+  "focusAreas": [
+    "Circuit design",
+    "Soldering",
+    "Microcontrollers",
+    "Arduino",
+    "Logic circuits",
+    "Digital systems",
+    "Verilog",
+    "Programming"
+  ],
+  "about": {
+    "intro": "The Wire Lion Engineering Club at the University of Colorado Colorado Springs (UCCS) is a student-led organization dedicated to fostering innovation, collaboration, and hands-on learning in electrical and computer engineering. Founded in 2025, the club brings together students with a shared passion for circuit design, microcontrollers, programming, and applied engineering projects.",
+    "mission": "Our mission is to create an inclusive environment where members of all skill levels, beginner to advanced, can gain practical experience, strengthen technical knowledge, and build leadership skills. The club provides opportunities to work on projects ranging from simple logic circuit builds and Arduino applications to more advanced digital systems and Verilog designs.",
+    "beyond": "Beyond technical growth, the Wire Lion Engineering Club emphasizes teamwork, problem-solving, and professional development. Members collaborate on real-world inspired projects, prepare for competitions, and network with peers, faculty, and industry professionals. With over 40 members and a growing base of active participants, we aim to inspire future engineers by connecting classroom theory with practical application.",
+    "closing": "By combining creativity, mentorship, and community, the Wire Lion Engineering Club empowers students to explore their potential, contribute to meaningful projects, and prepare for careers in engineering and technology.",
+    "pillars": [
+      { "title": "ALL SKILL LEVELS", "body": "Beginner to advanced. Your first solder joint is welcome here." },
+      { "title": "HANDS-ON BUILDS", "body": "From logic circuits and Arduino to digital systems and Verilog." },
+      { "title": "TEAMWORK", "body": "Real-world inspired projects built and debugged together." },
+      { "title": "CAREER READY", "body": "Competitions, documentation, and networking with faculty and industry." }
+    ]
+  },
+  "join": {
+    "mountainLionConnectUrl": "https://mlc.uccs.edu/organization/ecestudentsclub",
+    "headline": "JOIN THE PRIDE.",
+    "body": "Membership runs through Mountain Lion Connect, UCCS's official student-organization portal. Once you join Wire Lion there, you'll get access to our Discord, meeting times, and club announcements.",
+    "steps": [
+      { "n": "01", "title": "JOIN ON MOUNTAIN LION CONNECT", "body": "Sign in with your UCCS account and hit Join on the Wire Lion page." },
+      { "n": "02", "title": "GET THE DISCORD + MEETING INFO", "body": "Our Discord invite, meeting schedule, and announcements are shared with members through Mountain Lion Connect." },
+      { "n": "03", "title": "SHOW UP AND BUILD", "body": "No experience needed. Bring curiosity; we'll hand you a soldering iron." }
+    ],
+    "faq": [
+      { "q": "Do I need experience?", "a": "No. The club is built for every skill level, beginner to advanced." },
+      { "q": "Where do I find meeting times?", "a": "For now, meeting times are sent to members through Mountain Lion Connect after you join." },
+      { "q": "Where's the Discord?", "a": "The Discord link is shared with members through Mountain Lion Connect once you join." }
+    ]
+  },
+  "contact": {
+    "address": "1420 Austin Bluffs Pkwy, Colorado Springs, CO 80918",
+    "email": "Dbustos@uccs.edu",
+    "emailLabel": "Daniel Bustos, President & Primary Contact",
+    "showEmail": true,
+    "_note": "Phone number intentionally NOT included on the public site. TODO(Kaeden): confirm Daniel is OK with his email being public or swap in a club inbox."
+  },
+  "social": {
+    "_note": "TODO(Kaeden): fill these in. Any empty value must be hidden in the UI, never shown as a dead link.",
+    "instagram": "",
+    "discord": "",
+    "linkedin": "",
+    "github": "",
+    "youtube": ""
+  }
+}

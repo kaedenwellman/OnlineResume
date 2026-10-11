@@ -1,0 +1,31 @@
+{
+  "videos": [
+    {
+      "slug": "arduino-button-pullup",
+      "title": "How does an Arduino read a button?",
+      "subtitle": "Engineering 201 · Pull-up resistor circuit",
+      "description": "A 50-second animated walkthrough of how a 10 kΩ pull-up resistor gives an Arduino input a reference voltage: why released reads HIGH, pressed reads LOW, and why a floating pin picks up noise.",
+      "chapters": [
+        { "label": "01 / Give the input a reference" },
+        { "label": "02 / Pressing means LOW" },
+        { "label": "03 / Fields are fast. Drift is slow." },
+        { "label": "04 / A floating trace can pick up fields" },
+        { "label": "06 / One button. Two clear states." }
+      ],
+      "src": "/video/arduino-button-pullup-720.mp4",
+      "poster": "/video/arduino-button-pullup-poster.jpg",
+      "durationSeconds": 50,
+      "level": "BEGINNER",
+      "tags": ["ARDUINO", "PULL-UP", "DIGITAL INPUT"],
+      "credit": "Created by Matthew Barker",
+      "_note": "TODO(Kaeden): the HU-001C tech doc lists a 'Matthew Smith Baker'. Confirm the correct spelling of the creator's name."
+    }
+  ],
+  "gallery": [
+    { "src": "/photos/soldering-closeup.webp", "alt": "A club member soldering a circuit board held in helping hands on a red Weller mat", "label": "SOLDERING" },
+    { "src": "/photos/inspection-magnifier.webp", "alt": "A member inspects a soldered board under a lighted magnifier while an officer looks on", "label": "INSPECTION" },
+    { "src": "/photos/soldering-station.webp", "alt": "A member working at a fully set-up soldering station with fume extractor", "label": "BUILD NIGHT" },
+    { "src": "/photos/whiteboard-review.webp", "alt": "Two members reviewing a board in front of a whiteboard covered in circuit sketches", "label": "DESIGN REVIEW" },
+    { "src": "/photos/museum-trip-p38.webp", "alt": "Wire Lion members posing in front of a P-38 Lightning aircraft at a World War II museum", "label": "FIELD TRIP", "caption": "Club trip to the World War II museum, in front of a P-38 Lightning.", "_note": "TODO(Kaeden): confirm the museum's full name for the caption." }
+  ]
+}

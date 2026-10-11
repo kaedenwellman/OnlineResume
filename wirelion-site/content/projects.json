@@ -1,0 +1,127 @@
+{
+  "_note": "Order = display order. Optional teaser = short name used in the home page 'Up next' callout. status: COMPLETE | IN PROGRESS | UPCOMING. Fields starting with _ are notes for humans; never render them.",
+  "projects": [
+    {
+      "slug": "traffic-light-intersection",
+      "title": "4-Way Traffic Light Intersection",
+      "category": "ARDUINO BUILD",
+      "status": "COMPLETE",
+      "level": "INTERMEDIATE",
+      "_levelNote": "TODO(Kaeden): level is a guess, please confirm.",
+      "summary": "A scale-model four-way intersection with four Arduino-controlled traffic signals, built by a club team.",
+      "description": "A team-built scale model of a four-way intersection: four powered traffic signals coded on an Arduino to run a coordinated red / yellow / green cycle, set on a hand-finished base with painted crosswalks, sidewalks, trees, and buildings (and a small gold mountain lion keeping watch on the corner).",
+      "_descriptionNote": "Earlier notes described a 60-second red/green/yellow loop. Do not state timing on the site until the tech doc confirms it.",
+      "tech": ["ARDUINO", "C++", "LEDs", "WIRING"],
+      "concepts": [],
+      "images": [
+        { "src": "/projects/traffic-light/cover.webp", "alt": "Scale model of a four-way intersection with lit traffic signals, painted crosswalks, and model trees" }
+      ],
+      "doc": null,
+      "docPendingLabel": "TECH DOC COMING SOON",
+      "contributors": [],
+      "contributorsFallback": "Built by a Wire Lion team"
+    },
+    {
+      "slug": "hu-001c-game-machine",
+      "title": "HU-001C Handheld Game Machine",
+      "category": "SOLDERING KIT",
+      "status": "COMPLETE",
+      "level": "BEGINNER",
+      "summary": "An '80s-style handheld game machine, soldered, assembled, and debugged from a kit.",
+      "description": "A DIY handheld gaming system built from the HU-001C Funny Game Machine kit. A programmed STC15F2K60S2 microcontroller reads five push buttons and drives an LED dot-matrix display, a three-digit numeric display, and a buzzer to run several retro-style games. Members identified parts, read the supplied circuit references, soldered the board, fit the clear case, and tested the finished system. The club assembled and tested an existing kit; PCB design and game firmware were outside this build's scope.",
+      "tech": ["STC15F2K60S2 MCU", "LED MATRIX", "THROUGH-HOLE", "SOLDERING"],
+      "specs": [
+        { "label": "MICROCONTROLLER", "value": "STC15F2K60S2" },
+        { "label": "INPUTS", "value": "5 push buttons" },
+        { "label": "OUTPUTS", "value": "LED dot matrix, 3-digit display, buzzer" },
+        { "label": "POWER", "value": "AAA battery pack (micro-USB socket included)" }
+      ],
+      "build": [
+        "Identify components and check resistor value, IC socket notch, transistor orientation, and capacitor polarity",
+        "Assemble the battery holder and connect power leads with correct polarity",
+        "Solder the core components, then the buttons, buzzer, matrix sections, and numeric display",
+        "Solder the micro-USB connector and IC socket, then seat the microcontroller and button caps",
+        "Close the clear case, install batteries, and test controls, display, game switching, and sound"
+      ],
+      "troubleshooting": [
+        "Excess solder risking bridges: reheated, desoldered, and re-soldered with less",
+        "Incomplete through-hole joints: reflowed, reworking from the other side where needed",
+        "Battery pack initially missed: added afterward, matching polarity to PCB markings",
+        "Intermittent power: battery contact clips extended slightly for firmer contact"
+      ],
+      "concepts": ["Soldering technique", "Plated through-holes", "Rework", "Polarity & orientation", "Systematic testing"],
+      "images": [
+        { "src": "/projects/hu-001c/cover.webp", "alt": "Completed HU-001C handheld game machine in a clear case with yellow buttons and a lit green LED matrix" },
+        { "src": "/projects/hu-001c/display-lit.webp", "alt": "Close-up of the game machine's LED matrix illuminated during play" },
+        { "src": "/projects/hu-001c/two-completed.webp", "alt": "Two completed HU-001C game machines side by side" },
+        { "src": "/projects/hu-001c/wiring-overview.webp", "alt": "Club wiring overview diagram of the HU-001C board" }
+      ],
+      "doc": { "src": "/docs/wire-lion-hu-001c-game-machine.pdf", "label": "DOWNLOAD TECH DOC (PDF)" },
+      "contributors": [
+        { "role": "Project Manager", "names": ["Daniel Bustos"] },
+        { "role": "Project Leaders", "names": ["Ben Foronda", "William McGinley"] },
+        { "role": "Schematic", "names": ["Noah Karavatakis", "Leah Greenberg", "Kaeden Wellman", "Lerry Lara", "Antonio Magana", "Connor O'Boyle", "John Johnson", "Alex Flaherty"] },
+        { "role": "Soldering & Assembly", "names": ["Noah Karavatakis", "Leah Greenberg", "Kaeden Wellman", "Lerry Lara", "Antonio Magana", "Connor O'Boyle", "John Johnson", "Alex Flaherty", "Riley Snyder", "Devin Cook", "William Hester"] },
+        { "role": "Technical Documentation", "names": ["William McGinley", "Kaeden Wellman", "Antonio Magana", "Noah Karavatakis", "Alex Flaherty"] },
+        { "role": "Additional Contributors", "names": ["Logan Hammond", "Matthew Smith Baker", "Cade Kennedy", "Other Wire Lion members"] }
+      ]
+    },
+    {
+      "slug": "light-activated-alarm",
+      "title": "Light-Activated LED & Buzzer Alarm",
+      "category": "SENSOR CIRCUIT",
+      "status": "COMPLETE",
+      "level": "BEGINNER",
+      "summary": "A 3 V light-sensing alarm that lights an LED and sounds a buzzer, with adjustable sensitivity.",
+      "description": "A 3 V light-activated alarm that detects changes in ambient light and responds with an LED and a buzzer. A 5516 photoresistor and 10 kΩ potentiometer set the bias on an 8050 NPN transistor; when light crosses the chosen threshold, Q1 pulls its collector low, lighting the LED and switching an 8550 PNP high-side transistor to sound the buzzer. Members went from a printed schematic and parts kit to a soldered, working PCB.",
+      "tech": ["PHOTORESISTOR", "NPN / PNP BJT", "3 V", "SOLDERING"],
+      "specs": [
+        { "label": "SUPPLY", "value": "3 V battery pack" },
+        { "label": "SENSOR", "value": "5516 LDR + 10 kΩ potentiometer" },
+        { "label": "SWITCHING", "value": "8050 NPN (Q1), 8550 PNP (Q2)" },
+        { "label": "OUTPUTS", "value": "LED (100 Ω limit) + buzzer" }
+      ],
+      "build": [
+        "Match each component to its PCB reference designator and verify values and orientation",
+        "Solder resistors and low-profile parts first",
+        "Install the LDR, potentiometer, LED, transistors, buzzer, and battery leads",
+        "Inspect for cold joints, bridges, and reversed polarized parts, then trim leads",
+        "Final visual inspection before connecting the 3 V supply"
+      ],
+      "troubleshooting": [
+        "LED dimmer than expected: continuity-checked the whole PCB with a Fluke 17B",
+        "Several beginner solder joints reflowed and verified",
+        "Circuit worked after repairs; remaining dim LED identified as a likely defective part and kept as a teaching example"
+      ],
+      "concepts": ["Light-dependent resistance", "Adjustable bias networks", "NPN & PNP transistor switching", "Cutoff & saturation", "Datasheet reading", "Systematic troubleshooting"],
+      "images": [
+        { "src": "/projects/light-alarm/cover.webp", "alt": "Completed light-activated alarm PCB connected to a two-cell battery holder" },
+        { "src": "/projects/light-alarm/schematic.webp", "alt": "Schematic of the LDR and potentiometer sensing network, Q1 LED stage, and Q2 buzzer stage" }
+      ],
+      "doc": { "src": "/docs/wire-lion-light-activated-alarm.pdf", "label": "DOWNLOAD TECH DOC (PDF)" },
+      "contributors": [
+        { "role": "Project Management", "names": ["Daniel Bustos", "William McGinley"] },
+        { "role": "Schematic", "names": ["Lerry Lara", "Antonio Magana", "Noah Cromwell"] },
+        { "role": "Soldering & Assembly", "names": ["Lerry Lara", "Kaeden Wellman", "William Hester", "Antonio Magana", "Riley Snyder", "John Johnson"] },
+        { "role": "Technical Documentation", "names": ["Lerry Lara", "Kaeden Wellman", "William Hester"] }
+      ]
+    },
+    {
+      "slug": "reactive-jack-o-lantern",
+      "title": "Sound-Reactive LED Jack-o'-Lantern",
+      "category": "COMPETITION",
+      "status": "UPCOMING",
+      "teaser": "HALLOWEEN COMPETITION",
+      "level": "ALL LEVELS",
+      "_levelNote": "TODO(Kaeden): confirm level, date, and competition rules.",
+      "summary": "Halloween build competition: an LED jack-o'-lantern that reacts to noise.",
+      "description": "Our Halloween competition: build a noise-controlled, reactive LED jack-o'-lantern that responds to sound. Details are shared with members through Mountain Lion Connect.",
+      "tech": ["LEDs", "SOUND SENSING", "MICROCONTROLLER"],
+      "images": [],
+      "_imageNote": "No photo yet: render the designed 'COMING SOON' placeholder card (see HANDOFF §6.4).",
+      "doc": null,
+      "cta": { "label": "JOIN TO COMPETE", "href": "/join" },
+      "contributors": []
+    }
+  ]
+}
